@@ -45,6 +45,11 @@ canvas {
 
 .rect {
     background: url('img/rect.png') no-repeat center center;
+    background-size: 100%;
+}
+.cross {
+    background: url('img/cross.png') no-repeat center center;
+    background-size: 100%;
 }
 
 .circle {

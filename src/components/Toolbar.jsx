@@ -1,16 +1,36 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import Context from '../context/context';
 
 
 const Toolbar = () => {
+    const {setTool, context, canvas} = useContext(Context);
+    const remove=()=>{
+        context.clearRect(0, 0, canvas.width, canvas.height)
+    }
+    const download = () => {
+        const dataUrl = canvas.toDataURL()
+        const a = document.createElement('a')
+        a.style.backgroundColor = '#fff'
+        a.href = dataUrl
+
+        //save png
+        a.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+
+        //save jpeg
+        // a.setAttribute('href', canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
+        a.click();
+    }
+
 
     return (
             <div className="toolbar">
-                <button className="toolbar_btn save" />
-                <button className="toolbar_btn brush" />
-                <button className="toolbar_btn rect" />
-                <button className="toolbar_btn circle" />
-                <button className="toolbar_btn eraser" />
-                <button className="toolbar_btn line" />
+                <button className="toolbar_btn save" onClick={download}/>
+                <button className="toolbar_btn cross"  onClick={remove}/>
+                <button className="toolbar_btn brush" onClick={()=> setTool('brush')}/>
+                <button className="toolbar_btn rect" onClick={()=> setTool('rect')}/>
+                <button className="toolbar_btn circle" onClick={()=> setTool('circle')}/>
+                <button className="toolbar_btn eraser" onClick={()=> setTool('eraser')}/>
+                <button className="toolbar_btn line" onClick={()=> setTool('line')}/>
             </div>
 
     );

@@ -19,7 +19,6 @@ const SettingBar = () => {
                     style={{margin: '0 10px'}}
                     id="line-width"
                     type="number" defaultValue={1} min={1} max={30}/>
-
                 <label htmlFor="stroke-color">Color &nbsp;</label>
                 <input onChange={colorHandler} id="stroke-color" type="color"/>
             </div>

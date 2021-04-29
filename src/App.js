@@ -8,8 +8,11 @@ import './App.css'
 function App() {
     const [color, setColor] = useState('#000');
     const [font, setFont] = useState(1);
-    const [tool, setTool] = useState('')
-    const value ={color, setColor, font, setFont, tool, setTool};
+    const [tool, setTool] = useState('brush')
+    const [canvas, setCanvas] = useState(null);
+    const [context, setContext] = useState(null);
+    const value ={color, setColor, font, setFont, tool, setTool,canvas, setCanvas,context, setContext};
+
     return (
         <Context.Provider value={value}>
             <Toolbar/>
