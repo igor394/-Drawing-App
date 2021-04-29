@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useCallback, useContext} from 'react';
 import Context from '../context/context';
 
 
@@ -20,17 +20,20 @@ const Toolbar = () => {
         // a.setAttribute('href', canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream"));
         a.click();
     }
+    const  handlerTool= useCallback((params) => ()=>{
+        setTool(params)
+    },[setTool])
 
 
     return (
             <div className="toolbar">
                 <button className="toolbar_btn save" onClick={download}/>
                 <button className="toolbar_btn cross"  onClick={remove}/>
-                <button className="toolbar_btn brush" onClick={()=> setTool('brush')}/>
-                <button className="toolbar_btn rect" onClick={()=> setTool('rect')}/>
-                <button className="toolbar_btn circle" onClick={()=> setTool('circle')}/>
-                <button className="toolbar_btn eraser" onClick={()=> setTool('eraser')}/>
-                <button className="toolbar_btn line" onClick={()=> setTool('line')}/>
+                <button className="toolbar_btn brush" onClick={handlerTool('brush')}/>
+                <button className="toolbar_btn rect" onClick={handlerTool('rect')}/>
+                <button className="toolbar_btn circle" onClick={handlerTool('circle')}/>
+                <button className="toolbar_btn eraser" onClick={handlerTool('eraser')}/>
+                <button className="toolbar_btn line" onClick={handlerTool('line')}/>
             </div>
 
     );
